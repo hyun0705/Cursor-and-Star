@@ -1,0 +1,662 @@
+:root {
+    --black: #131313;
+    --black-light: #1f1f1f;
+    --gray: #333;
+    --gray-light: #e5e7eb;
+    --white: #ffffff;
+    --purple: #a573fc;
+    --border-gray: #363636;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none !important;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--white);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--white);
+    font-weight: 700;
+    opacity: 0.8;
+}
+
+p,
+li {
+    color: var(--white);
+    opacity: 0.8;
+}
+
+/* 해상도 경고 화면 */
+.resolution-warning {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10002;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.resolution-warning-content {
+    background: var(--black-light);
+    border: 2px solid var(--border-gray);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    color: #e6e9ff;
+    box-shadow: 0 20px 40px rgba(8, 8, 22, 0.8);
+    max-width: 500px;
+    width: 100%;
+}
+
+.resolution-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ff6b6b;
+    font-weight: 600;
+}
+
+.resolution-message {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--white);
+    opacity: 0.7;
+}
+
+.resolution-tips {
+    background: rgba(124, 97, 45, 0.1);
+    border: 1px solid rgba(255, 203, 107, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #fbbf24;
+}
+
+
+.intro {
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, var(--black-light) 0%, var(--black) 100%);
+}
+
+.intro-content {
+    background-color: var(--black);
+    border: solid 2px var(--border-gray);
+    border-radius: 10px;
+    text-align: center;
+    padding: 40px;
+    max-width: 600px;
+}
+
+.intro-title {
+    font-size: 3rem;
+    text-shadow:
+        0 0 10px rgba(148, 0, 211, 0.8),
+        0 0 20px rgba(148, 0, 211, 0.6),
+        0 0 30px rgba(148, 0, 211, 0.4),
+        0 0 40px rgba(148, 0, 211, 0.2);
+}
+
+.intro-btn {
+    margin-top: 16px;
+    padding: 12px 30px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background: linear-gradient(145deg, #7428f7, #c997d6);
+    transition: all 0.3s ease;
+    animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.intro-btn:hover {
+    background: linear-gradient(145deg, #9950ff, #eabbeb);
+    transform: translateY(-2px);
+    box-shadow:
+        0 7px 25px rgba(153, 102, 255, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.intro-btn:active {
+    transform: translateY(0);
+}
+
+.intro-footer {
+    margin-top: 0.25rem;
+    letter-spacing: 1px;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* 커서 커스텀 */
+.custom-cursor {
+    position: fixed;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+    z-index: 10010;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+.custom-cursor svg {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.15s ease;
+}
+
+
+.click-ripple {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #c4c4c4;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    animation: ripple 1.5s ease-out;
+}
+
+
+@keyframes ripple {
+    0% {
+        width: 30px;
+        height: 30px;
+        opacity: 1;
+    }
+
+    100% {
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+    }
+}
+
+/* 컨테이너 */
+.container {
+    display: none;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.stage-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 4rem;
+    border-radius: 20px;
+    background-color: var(--black);
+    border: solid 2px var(--border-gray);
+    max-width: 600px;
+    width: 100%;
+}
+
+.stage-label {
+    color: #666;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.stage-number {
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow:
+        0 0 10px rgba(148, 0, 211, 0.8),
+        0 0 20px rgba(148, 0, 211, 0.6),
+        0 0 30px rgba(148, 0, 211, 0.4),
+        0 0 40px rgba(148, 0, 211, 0.2);
+    letter-spacing: 4px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.stage-number.success {
+    opacity: 1;
+    filter: brightness(2);
+    text-shadow:
+        0 0 10px rgba(255, 215, 0, 0.8),
+        0 0 20px rgba(255, 215, 0, 0.6),
+        0 0 30px rgba(255, 215, 0, 0.4),
+        0 0 40px rgba(255, 215, 0, 0.2);
+}
+
+.stage-progress {
+    width: 200px;
+    height: 4px;
+    background-color: var(--border-gray);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #9a7ee8, #7428f7);
+    transition: width 0.5s ease;
+    box-shadow: 0 0 15px rgba(116, 40, 247, 0.4);
+}
+
+/* 컨텐트 */
+.game-display {
+    margin-top: 2rem;
+    border-radius: 20px;
+    background-color: var(--black);
+    border: solid 2px var(--border-gray);
+    width: 100%;
+    height: 60vh;
+    position: relative;
+}
+
+.answer-star {
+    font-size: 1rem;
+    position: absolute;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    color: yellow;
+}
+
+/* .answer-star.hidden {
+    visibility: hidden;
+} */
+
+.chance {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #d1d0d0;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 0.5rem;
+}
+
+.chance-display {
+    display: flex;
+}
+
+.btn {
+    margin: 0 0.5rem;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 24px;
+    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+    color: var(--hover-color);
+    border-color: var(--hover-border);
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.manual-btn {
+    --text-color: #8595e6;
+    --border-color: #2739fa;
+    --hover-color: #5967fd;
+    --hover-border: #5265c6;
+}
+
+.reset-btn {
+    --text-color: #9e5feb;
+    --border-color: #782ff7;
+    --hover-color: #782ff7;
+    --hover-border: #9e5feb;
+}
+
+.restart-btn {
+    --text-color: #df5f38;
+    --border-color: #a24b32;
+    --hover-color: #eb5c29;
+    --hover-border: #bd291f;
+}
+
+/* 게임 애니메이션 및 효과 스타일 */
+
+/* 페이드아웃 애니메이션 */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* 커서 스타일 */
+.custom-cursor svg path {
+    transition: fill 0.2s ease;
+}
+
+.custom-cursor.in-game-area svg path {
+    fill: #9a7ee8 !important;
+    transition: fill 0.2s ease;
+}
+
+/* 파동 애니메이션 */
+@keyframes ripple {
+    0% {
+        width: 30px;
+        height: 30px;
+        opacity: 1;
+    }
+
+    100% {
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+    }
+}
+
+/* 기본 파동 스타일 (흰색) */
+.click-ripple {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border: 2px solid white;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    animation: ripple 1.5s ease-out forwards;
+}
+
+/* 게임 영역 안에서의 파동 스타일 (보라색) */
+.click-ripple.in-game-area {
+    border: 2px solid #9a7ee8;
+    background: rgba(154, 126, 232, 0.1);
+}
+
+/* 알림 페이드인 애니메이션 */
+@keyframes alertFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 거리 알림 기본 스타일 */
+.distance-alert {
+    position: fixed;
+    top: 10%;
+    right: 2%;
+    padding: 1rem 1.25rem;
+    border-radius: 15px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    z-index: 10000;
+    animation: alertFadeIn 0.3s ease;
+    pointer-events: none;
+    background-color: var(--black-light);
+}
+
+/* 거리별 알림 색상 */
+.distance-alert.very-close {
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+}
+
+.distance-alert.close {
+    box-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
+}
+
+.distance-alert.medium {
+    box-shadow: 0 0 20px rgba(255, 230, 109, 0.5);
+}
+
+.distance-alert.far {
+    box-shadow: 0 0 20px rgba(168, 230, 207, 0.5);
+}
+
+.distance-alert.else {
+    box-shadow: 0 0 20px rgba(179, 168, 230, 0.5);
+}
+
+.distance-alert.success {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+@keyframes starFound {
+    0% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+    50% {
+        transform: scale(4);
+        filter: brightness(2) drop-shadow(0 0 20px gold);
+    }
+
+    100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+}
+
+.manual {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeIn 0.5s;
+}
+
+.manual.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.manual-content {
+    background-color: var(--black);
+    border: 2px solid var(--border-gray);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 800px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.manual-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #777;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+
+.manual-close:hover {
+    color: white;
+}
+
+.manual-list {
+    margin-top: 1rem;
+}
+
+.manual-content h2 {
+    opacity: 1;
+    font-size: 2rem;
+    color: #9950ff;
+}
+
+.manual-content h3 {
+    margin-top: 1rem;
+    color: var(--purple);
+}
+
+.manual-list p {
+    margin-bottom: 0.25rem;
+    margin-left: 0.5rem;
+}
+
+.rules-list {
+    list-style: none;
+}
+
+.rules-list li {
+    align-items: center;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(116, 40, 247, 0.1);
+    border-radius: 10px;
+}
+
+.distance-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+
+/* 버튼 액션 알림 스타일 */
+.action-alert {
+    position: fixed;
+    top: 85%;
+    left: 50%;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 50%, #2d1b69 100%);
+    color: #e6e9ff;
+    color: var(--gray-light);
+    border-radius: 28px;
+    box-shadow: 0 2px 12px rgba(73, 85, 137, 0.3);
+    border: 1px solid #192958;
+    z-index: 10001;
+    overflow: hidden;
+    padding: 0.875rem 2rem;
+    opacity: 0;
+    transform: translateX(-50%) translateY(200%);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.action-alert.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.action-alert.hide {
+    transform: translateX(-50%) translateY(200%);
+    opacity: 0;
+}
+
+/* 768px 이하에서만 경고 화면 표시 */
+@media (max-width: 768px) {
+    .resolution-warning {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .intro,
+    .container {
+        display: none !important;
+    }
+}
