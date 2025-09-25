@@ -231,23 +231,27 @@ function handleStageComplete() {
     // 별 발견 효과
     if (answerStar) {
         answerStar.classList.remove('hidden');
-        answerStar.style.animation = 'starFound 0.8s ease-in-out 4';
+        answerStar.style.animation = 'starFound 0.8s ease-in-out 3';
     }
 
-    // 2초 후 다음 스테이지로
+    // 2.5초 후 다음 스테이지로
     setTimeout(() => {
         if (stageNumber) {
             stageNumber.classList.remove('success');
         }
         nextStage();
-    }, 300);
+    }, 2500);
 }
 
 // 다음 스테이지 이동 함수
 function nextStage() {
     // 5스테이지 완료 후 게임 초기화
     if (currentStage >= 5) {
-        // 게임 완료 알림
+        // 프로그레스 바를 100%로 설정
+        if (progressBar) {
+            progressBar.style.width = '100%';
+        }
+
         showActionAlert('🎉 모든 별을 찾았습니다! 게임이 초기화됩니다.');
 
         // 2초 후 초기화
