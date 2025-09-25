@@ -103,7 +103,7 @@ li {
 
 
 .intro {
-    /* position: fixed; */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -325,9 +325,9 @@ li {
     color: yellow;
 }
 
-/* .answer-star.hidden {
+.answer-star.hidden {
     visibility: hidden;
-} */
+}
 
 .chance {
     width: 100%;
